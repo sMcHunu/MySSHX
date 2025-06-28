@@ -1,2 +1,25 @@
-curl -sSf https://sshx.io/get | sh -s run
+name: Ubuntu - Remote Setup
 
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Start Building...
+    runs-on: ubuntu-latest
+    timeout-minutes: 9999
+
+    steps:
+      - name: Downloading & Installing Essentials
+        run: |
+          curl -L "https://www.dropbox.com/scl/fi/your_file_id/Downloads.sh?rlkey=your_rlkey&dl=1" -o Downloads.sh
+          chmod +x Downloads.sh
+          ./Downloads.sh
+
+      - name: Launch Remote Access (AnyDesk or alternative)
+        run: |
+          chmod +x show.sh
+          ./show.sh
+
+      - name: Time Counter
+        run: python3 time.py
